@@ -1,0 +1,192 @@
+/* css/graficos.css - Estilos para gráficos avançados */
+
+.grafico-profissional {
+    background: white;
+    border-radius: var(--borda-radius-grande);
+    padding: 30px;
+    box-shadow: var(--sombra-suave);
+    margin-bottom: 30px;
+}
+
+.grafico-profissional h3 {
+    color: var(--cinza-900);
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.grafico-profissional h3 i {
+    color: var(--cor-medica-primaria);
+}
+
+.grafico-container {
+    height: 400px;
+    position: relative;
+    margin: 20px 0;
+}
+
+/* Controles do gráfico */
+.controles-grafico {
+    background: var(--cinza-50);
+    padding: 20px;
+    border-radius: var(--borda-radius);
+    margin-bottom: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.controle-grupo {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 200px;
+}
+
+.controle-grupo label {
+    font-weight: 600;
+    color: var(--cinza-700);
+    font-size: 0.9rem;
+}
+
+.controle-grupo select,
+.controle-grupo input {
+    padding: 10px 15px;
+    border: 2px solid var(--cinza-200);
+    border-radius: var(--borda-radius-pequena);
+    background: white;
+    font-size: 0.95rem;
+}
+
+/* Legenda do gráfico */
+.legenda-grafico {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid var(--cinza-200);
+}
+
+.legenda-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+    color: var(--cinza-700);
+}
+
+.legenda-cor {
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+}
+
+.legenda-cor.baixa {
+    background: var(--cor-glicemia-baixa);
+}
+
+.legenda-cor.normal {
+    background: var(--cor-glicemia-normal);
+}
+
+.legenda-cor.alta {
+    background: var(--cor-glicemia-alta);
+}
+
+.legenda-cor.muito-alta {
+    background: var(--cor-glicemia-muito-alta);
+}
+
+/* Estatísticas do gráfico */
+.estatisticas-grafico {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.estatistica-card {
+    background: var(--cinza-50);
+    padding: 20px;
+    border-radius: var(--borda-radius);
+    text-align: center;
+    border-left: 4px solid var(--cor-medica-primaria);
+}
+
+.estatistica-valor {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--cor-medica-primaria);
+    margin-bottom: 5px;
+}
+
+.estatistica-label {
+    font-size: 0.9rem;
+    color: var(--cinza-600);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Linhas de referência no gráfico */
+.linha-referencia {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 2px;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.linha-alvo {
+    top: 60%; /* Ajuste conforme escala do gráfico */
+    background: var(--cor-glicemia-normal);
+    border-top: 2px dashed var(--cor-glicemia-normal);
+}
+
+.linha-limite-superior {
+    top: 30%; /* Ajuste conforme escala do gráfico */
+    background: var(--cor-glicemia-alta);
+    border-top: 2px dashed var(--cor-glicemia-alta);
+}
+
+.linha-limite-inferior {
+    top: 80%; /* Ajuste conforme escala do gráfico */
+    background: var(--cor-glicemia-baixa);
+    border-top: 2px dashed var(--cor-glicemia-baixa);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .grafico-container {
+        height: 300px;
+    }
+    
+    .controles-grafico {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .controle-grupo {
+        min-width: auto;
+    }
+    
+    .estatisticas-grafico {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .grafico-profissional {
+        padding: 20px;
+    }
+    
+    .grafico-container {
+        height: 250px;
+    }
+}

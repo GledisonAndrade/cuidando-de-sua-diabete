@@ -1,0 +1,235 @@
+/* css/temas.css - Temas com contraste melhorado */
+
+/* TEMA CLARO - Melhorado para melhor contraste */
+.tema-claro {
+    --cor-primaria: #2c3e50;
+    --cor-secundaria: #34495e;
+    --cor-fundo: #f8f9fa;
+    --cor-fundo-card: #ffffff;
+    --cor-texto: #2c3e50;
+    --cor-texto-secundario: #5d6d7e;
+    --cor-borda: #d5dbdb;
+    --cor-medica-primaria: #4361ee;
+    --cor-glicemia-baixa: #4cc9f0;
+    --cor-glicemia-normal: #2ecc71;
+    --cor-glicemia-alta: #ff9e00;
+    --cor-glicemia-muito-alta: #e74c3c;
+}
+
+.tema-claro .header-simples {
+    background: linear-gradient(135deg, #2c3e50, #34495e);
+    box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+}
+
+.tema-claro .nav-link {
+    color: rgba(255, 255, 255, 0.95);
+}
+
+.tema-claro .nav-link:hover {
+    background: rgba(255, 255, 255, 0.15);
+    color: white;
+}
+
+.tema-claro .nav-link.active {
+    background: rgba(255, 255, 255, 0.25);
+    color: white;
+    border-bottom-color: #4cc9f0;
+}
+
+.tema-claro .card {
+    background: #ffffff;
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.tema-claro .form-simples input,
+.tema-claro .form-simples select,
+.tema-claro .form-simples textarea {
+    background: #ffffff;
+    border: 2px solid #d5dbdb;
+    color: #2c3e50;
+}
+
+.tema-claro .form-simples input:focus,
+.tema-claro .form-simples select:focus,
+.tema-claro .form-simples textarea:focus {
+    border-color: #4361ee;
+    box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.15);
+}
+
+.tema-claro .section-header {
+    border-bottom-color: #4361ee;
+}
+
+.tema-claro .section-header h2 {
+    color: #2c3e50;
+}
+
+.tema-claro .section-header p {
+    color: #5d6d7e;
+}
+
+.tema-claro .footer-simples {
+    background: linear-gradient(135deg, #2c3e50, #34495e);
+}
+
+.tema-claro .filtros {
+    background: #f1f2f6;
+    border-color: #d5dbdb;
+}
+
+/* TEMA ESCURO */
+.tema-escuro {
+    --cor-primaria: #3498db;
+    --cor-secundaria: #2980b9;
+    --cor-fundo: #121212;
+    --cor-fundo-card: #1e1e1e;
+    --cor-texto: #ecf0f1;
+    --cor-texto-secundario: #bdc3c7;
+    --cor-borda: #34495e;
+    --cor-medica-primaria: #3498db;
+    --cor-glicemia-baixa: #4cc9f0;
+    --cor-glicemia-normal: #2ecc71;
+    --cor-glicemia-alta: #ff9e00;
+    --cor-glicemia-muito-alta: #e74c3c;
+}
+
+.tema-escuro .header-simples {
+    background: linear-gradient(135deg, #1a1a2e, #16213e);
+}
+
+.tema-escuro .card {
+    background: #1e1e1e;
+    border: 1px solid #2d3436;
+}
+
+.tema-escuro .form-simples input,
+.tema-escuro .form-simples select,
+.tema-escuro .form-simples textarea {
+    background: #2d3436;
+    border-color: #444;
+    color: #ecf0f1;
+}
+
+/* TEMA VERDE */
+.tema-verde {
+    --cor-primaria: #27ae60;
+    --cor-secundaria: #219653;
+    --cor-fundo: #f1f8e9;
+    --cor-fundo-card: #ffffff;
+    --cor-texto: #1b5e20;
+    --cor-texto-secundario: #388e3c;
+    --cor-borda: #c8e6c9;
+    --cor-medica-primaria: #27ae60;
+    --cor-glicemia-baixa: #4cc9f0;
+    --cor-glicemia-normal: #27ae60;
+    --cor-glicemia-alta: #ff9e00;
+    --cor-glicemia-muito-alta: #e74c3c;
+}
+
+.tema-verde .header-simples {
+    background: linear-gradient(135deg, #27ae60, #219653);
+}
+
+.tema-verde .nav-link.active {
+    border-bottom-color: #81c784;
+}
+
+.tema-verde .card {
+    border-color: #c8e6c9;
+}
+
+/* TEMA AZUL */
+.tema-azul {
+    --cor-primaria: #2980b9;
+    --cor-secundaria: #1c5d87;
+    --cor-fundo: #e3f2fd;
+    --cor-fundo-card: #ffffff;
+    --cor-texto: #0d47a1;
+    --cor-texto-secundario: #1976d2;
+    --cor-borda: #bbdefb;
+    --cor-medica-primaria: #2980b9;
+    --cor-glicemia-baixa: #4cc9f0;
+    --cor-glicemia-normal: #2ecc71;
+    --cor-glicemia-alta: #ff9e00;
+    --cor-glicemia-muito-alta: #e74c3c;
+}
+
+.tema-azul .header-simples {
+    background: linear-gradient(135deg, #2980b9, #1c5d87);
+}
+
+.tema-azul .nav-link.active {
+    border-bottom-color: #64b5f6;
+}
+
+.tema-azul .card {
+    border-color: #bbdefb;
+}
+
+/* Indicador de glicemia - visível em todos os temas */
+.glicemia-indicator {
+    background: var(--cor-fundo);
+    border: 1px solid var(--cor-borda);
+}
+
+.indicator-scale span {
+    font-weight: 600;
+    text-shadow: 0 1px 1px rgba(0,0,0,0.2);
+}
+
+/* Botões temáticos */
+.tema-claro .btn-theme {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.tema-escuro .btn-theme {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.tema-verde .btn-theme {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.tema-azul .btn-theme {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+/* Menu de temas */
+.tema-claro .theme-menu {
+    background: #ffffff;
+    border-color: #d5dbdb;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+}
+
+.tema-escuro .theme-menu {
+    background: #2d3436;
+    border-color: #444;
+}
+
+.tema-verde .theme-menu {
+    background: #ffffff;
+    border-color: #c8e6c9;
+}
+
+.tema-azul .theme-menu {
+    background: #ffffff;
+    border-color: #bbdefb;
+}
+
+/* Filtros temáticos */
+.tema-claro .filtros {
+    background: #f1f2f6;
+}
+
+.tema-escuro .filtros {
+    background: #2d3436;
+}
+
+.tema-verde .filtros {
+    background: #e8f5e9;
+}
+
+.tema-azul .filtros {
+    background: #e3f2fd;
+}

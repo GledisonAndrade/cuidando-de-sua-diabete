@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DiabetesCare - Sistema de Monitoramento</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>❤️</text></svg>">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>❤️</text></svg>">
+    <meta name="theme-color" content="#4361ee">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/graficos.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/temas.css">
+    <link rel="stylesheet" href="css/profissional.css">
+    
+    <!-- Fontes -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Bibliotecas -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    
+    <style>
+        /* Estilos temporários para ajustar a imagem */
+        .logo-img {
+            max-width: 80px;
+            height: auto;
+            object-fit: contain;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        @media (max-width: 768px) {
+            .logo-img {
+                max-width: 60px;
+            }
+        }
+    </style>
+
+<!-- Após o script.js no final do body, adicione: -->
+<script>
+    // Configurar notificações para o relatório
+    document.addEventListener('DOMContentLoaded', function() {
+        const formRelatorio = document.getElementById('form-relatorio');
+        if (formRelatorio) {
+            formRelatorio.addEventListener('submit', function(e) {
+                // A validação é feita no relatorios.js
+                // Esta função apenas garante que o evento seja tratado
+            });
+        }
+    });
+</script>
+
+
+
+</head>
+<body class="tema-claro">
+    <!-- HEADER CORRIGIDO E ORGANIZADO -->
+    <header class="header-simples">
+        <div class="container">
+            <div class="header-top">
+                <div class="logo">
+                    <!-- Imagem do logo - ajustada -->
+                    <img src="imagens/diabetes.png" alt="DiabetesLogo" class="logo-img">
+                    <div class="logo-text">
+                        <h1>Diabetes<span>Care</span></h1>
+                        <p class="logo-sub">Monitoramento Inteligente</p>
+                    </div>
+                </div>
+                
+                <div class="header-actions">
+                    <!-- Botão de Temas -->
+                    <div class="theme-wrapper">
+                        <button id="btn-temas" class="btn-theme" title="Mudar tema">
+                            <i class="fas fa-palette"></i>
+                            <span class="texto-tema">Tema</span>
+                        </button>
+                        <div id="menu-temas" class="theme-menu">
+                            <button data-tema="claro" class="theme-option">
+                                <i class="fas fa-sun"></i> Claro
+                            </button>
+                            <button data-tema="escuro" class="theme-option">
+                                <i class="fas fa-moon"></i> Escuro
+                            </button>
+                            <button data-tema="verde" class="theme-option">
+                                <i class="fas fa-leaf"></i> Verde
+                            </button>
+                            <button data-tema="azul" class="theme-option">
+                                <i class="fas fa-droplet"></i> Azul
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Botão Menu Mobile -->
+                    <button id="btn-menu-mobile" class="btn-menu-mobile">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- MENU DE NAVEGAÇÃO PRINCIPAL -->
+            <nav class="main-nav">
+                <ul class="nav-list">
+                    <li><a href="#" data-section="registro" class="nav-link active">
+                        <i class="fas fa-edit"></i> <span class="nav-text">Registrar</span>
+                    </a></li>
+                    <li><a href="#" data-section="historico" class="nav-link">
+                        <i class="fas fa-history"></i> <span class="nav-text">Histórico</span>
+                    </a></li>
+                    <li><a href="#" data-section="grafico" class="nav-link">
+                        <i class="fas fa-chart-line"></i> <span class="nav-text">Gráficos</span>
+                    </a></li>
+                    <li><a href="#" data-section="metas" class="nav-link">
+                        <i class="fas fa-bullseye"></i> <span class="nav-text">Metas</span>
+                    </a></li>
+                    <li><a href="#" data-section="alimentos" class="nav-link">
+                        <i class="fas fa-apple-alt"></i> <span class="nav-text">Alimentos</span>
+                    </a></li>
+                    <li><a href="#" data-section="indice" class="nav-link">
+                        <i class="fas fa-calculator"></i> <span class="nav-text">Índice</span>
+                    </a></li>
+                    <li><a href="#" data-section="relatorio" class="nav-link">
+                        <i class="fas fa-file-pdf"></i> <span class="nav-text">Relatórios</span>
+                    </a></li>
+                    <li><a href="#" data-section="sobre" class="nav-link">
+                        <i class="fas fa-info-circle"></i> <span class="nav-text">Sobre</span>
+                    </a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Seção de Registro -->
+        <section id="registro" class="secao ativa">
+            <div class="section-header">
+                <h2><i class="fas fa-syringe"></i> Registrar Glicemia</h2>
+                <p>Registre seus níveis de glicemia para monitoramento contínuo</p>
+            </div>
+            
+            <div class="card">
+                <form id="form-glicemia" class="form-simples">
+                    <div class="form-group">
+                        <label for="glicemia">
+                            <i class="fas fa-tint"></i> Nível de Glicemia (mg/dL)
+                        </label>
+                        <input type="number" id="glicemia" required min="20" max="600" placeholder="Ex: 120">
+                        
+                        <!-- Indicador visual -->
+                        <div class="glicemia-indicator">
+                            <div class="indicator-scale">
+                                <span class="indicator-baixa" title="Baixa (<70)">Baixa</span>
+                                <span class="indicator-normal" title="Normal (70-180)">Normal</span>
+                                <span class="indicator-alta" title="Alta (181-250)">Alta</span>
+                                <span class="indicator-muito-alta" title="Muito Alta (>250)">Muito Alta</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="data"><i class="fas fa-calendar"></i> Data</label>
+                            <input type="date" id="data" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="hora"><i class="fas fa-clock"></i> Hora</label>
+                            <input type="time" id="hora" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="observacao"><i class="fas fa-sticky-note"></i> Observações</label>
+                        <textarea id="observacao" rows="3" placeholder="Ex: Após café da manhã..."></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save"></i> Registrar Glicemia
+                    </button>
+                </form>
+            </div>
+            
+            <!-- Sistema de Alertas -->
+            <div class="card alertas-card">
+                <h3><i class="fas fa-bell"></i> Sistema de Alertas</h3>
+                <div class="alertas-content">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="limite-baixo">Limite de Alerta Baixo (mg/dL)</label>
+                            <input type="number" id="limite-baixo" value="70" min="50" max="100">
+                        </div>
+                        <div class="form-group">
+                            <label for="contato-emergencia">
+                                <i class="fas fa-phone"></i> Contato de Emergência
+                            </label>
+                            <input type="tel" id="contato-emergencia" placeholder="(11) 99999-9999">
+                        </div>
+                    </div>
+                    <button id="testar-alerta" class="btn btn-alerta">
+                        <i class="fas fa-bell"></i> Testar Alerta
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção de Histórico -->
+        <section id="historico" class="secao">
+            <div class="section-header">
+                <h2><i class="fas fa-history"></i> Histórico de Glicemia</h2>
+                <p>Visualize todos os seus registros anteriores</p>
+            </div>
+            
+            <div class="card">
+                <div class="filtros">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="filtro-data">Filtrar por data:</label>
+                            <input type="date" id="filtro-data">
+                        </div>
+                        <div class="form-group">
+                            <label for="filtro-status">Filtrar por status:</label>
+                            <select id="filtro-status">
+                                <option value="todos">Todos</option>
+                                <option value="baixa">Baixa</option>
+                                <option value="normal">Normal</option>
+                                <option value="alta">Alta</option>
+                                <option value="muito-alta">Muito Alta</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button id="limpar-filtro" class="btn btn-secondary">
+                        <i class="fas fa-times"></i> Limpar Filtros
+                    </button>
+                </div>
+                
+                <div id="lista-historico" class="lista-historico">
+                    <!-- Os registros serão inseridos aqui -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção de Gráficos -->
+        <section id="grafico" class="secao">
+            <div class="section-header">
+                <h2><i class="fas fa-chart-line"></i> Gráficos de Glicemia</h2>
+                <p>Visualize a evolução dos seus níveis glicêmicos</p>
+            </div>
+            
+            <div class="card">
+                <div class="grafico-controls">
+                    <div class="form-group">
+                        <label for="periodo-grafico">Período:</label>
+                        <select id="periodo-grafico">
+                            <option value="7">7 dias</option>
+                            <option value="14">14 dias</option>
+                            <option value="30" selected>30 dias</option>
+                            <option value="90">90 dias</option>
+                            <option value="personalizado">Personalizado</option>
+                        </select>
+                    </div>
+                    
+                    <div id="periodo-personalizado" class="periodo-personalizado" style="display: none;">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="grafico-inicio">De:</label>
+                                <input type="date" id="grafico-inicio">
+                            </div>
+                            <div class="form-group">
+                                <label for="grafico-fim">Até:</label>
+                                <input type="date" id="grafico-fim">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="grafico-container">
+                    <canvas id="grafico-glicemia"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção de Metas -->
+        <section id="metas" class="secao">
+            <div class="section-header">
+                <h2><i class="fas fa-bullseye"></i> Metas de Tratamento</h2>
+                <p>Defina e acompanhe suas metas de controle</p>
+            </div>
+            
+            <div class="card">
+                <form id="form-meta" class="form-simples">
+                    <div class="form-group">
+                        <label for="descricao-meta">Descrição da Meta:</label>
+                        <input type="text" id="descricao-meta" required placeholder="Ex: Fazer exercícios 3x por semana">
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="data-meta">Data Limite:</label>
+                            <input type="date" id="data-meta">
+                        </div>
+                        <div class="form-group">
+                            <label for="categoria-meta">Categoria:</label>
+                            <select id="categoria-meta">
+                                <option value="exercicio">Exercício</option>
+                                <option value="alimentacao">Alimentação</option>
+                                <option value="medicacao">Medicação</option>
+                                <option value="controle">Controle</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-plus"></i> Adicionar Meta
+                    </button>
+                </form>
+                
+                <div class="metas-listas">
+                    <div class="metas-pendentes">
+                        <h3>Metas Pendentes</h3>
+                        <ul id="lista-metas-pendentes" class="lista-metas">
+                            <!-- Metas pendentes aqui -->
+                        </ul>
+                    </div>
+                    
+                    <div class="metas-concluidas">
+                        <h3>Metas Concluídas</h3>
+                        <ul id="lista-metas-concluidas" class="lista-metas">
+                            <!-- Metas concluídas aqui -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção de Alimentos -->
+        <section id="alimentos" class="secao">
+            <div class="section-header">
+                <h2><i class="fas fa-apple-alt"></i> Registro de Alimentos</h2>
+                <p>Registre alimentos consumidos e acompanhe seu impacto na glicemia</p>
+            </div>
+            
+            <div class="card">
+                <form id="form-alimento" class="form-simples">
+                    <div class="form-group">
+                        <label for="alimento-nome">Nome do Alimento:</label>
+                        <input type="text" id="alimento-nome" required placeholder="Ex: Arroz integral, Maçã...">
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="alimento-quantidade">Quantidade (gramas):</label>
+                            <input type="number" id="alimento-quantidade" min="1" placeholder="Ex: 100">
+                        </div>
+                        <div class="form-group">
+                            <label for="alimento-carboidratos">Carboidratos (g):</label>
+                            <input type="number" id="alimento-carboidratos" step="0.1" placeholder="Ex: 25.5">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="alimento-categoria">Categoria:</label>
+                            <select id="alimento-categoria">
+                                <option value="cereais">Cereais</option>
+                                <option value="frutas">Frutas</option>
+                                <option value="vegetais">Vegetais</option>
+                                <option value="proteinas">Proteínas</option>
+                                <option value="laticinios">Laticínios</option>
+                                <option value="doces">Doces</option>
+                                <option value="bebidas">Bebidas</option>
+                                <option value="outros">Outros</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="alimento-data">Data:</label>
+                            <input type="date" id="alimento-data" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="alimento-hora">Hora:</label>
+                            <input type="time" id="alimento-hora" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="alimento-observacao">Observações:</label>
+                            <input type="text" id="alimento-observacao" placeholder="Ex: Após almoço, Antes exercício...">
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save"></i> Registrar Alimento
+                    </button>
+                </form>
+            </div>
+            
+            <div class="card">
+                <div class="filtros">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="filtro-alimento">Filtrar por categoria:</label>
+                            <select id="filtro-alimento">
+                                <option value="todos">Todos</option>
+                                <option value="cereais">Cereais</option>
+                                <option value="frutas">Frutas</option>
+                                <option value="vegetais">Vegetais</option>
+                                <option value="proteinas">Proteínas</option>
+                                <option value="laticinios">Laticínios</option>
+                                <option value="doces">Doces</option>
+                                <option value="bebidas">Bebidas</option>
+                                <option value="outros">Outros</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button id="limpar-filtro-alimento" class="btn btn-secondary">
+                        <i class="fas fa-times"></i> Limpar Filtro
+                    </button>
+                </div>
+                
+                <div id="lista-alimentos" class="lista-alimentos">
+                    <!-- Alimentos serão inseridos aqui -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção de Índice Glicêmico -->
+        <section id="indice" class="secao">
+            <div class="section-header">
+                <h2><i class="fas fa-chart-bar"></i> Índice Glicêmico</h2>
+                <p>Calcule e analise seu controle glicêmico</p>
+            </div>
+            
+            <div class="card">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="filtro-periodo-indice">Período rápido:</label>
+                        <select id="filtro-periodo-indice">
+                            <option value="7">7 dias</option>
+                            <option value="14">14 dias</option>
+                            <option value="30" selected>30 dias</option>
+                            <option value="60">60 dias</option>
+                            <option value="90">90 dias</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <form id="form-indice" class="form-simples">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="indice-inicio">Data Inicial:</label>
+                            <input type="date" id="indice-inicio" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="indice-fim">Data Final:</label>
+                            <input type="date" id="indice-fim" required>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-calculator"></i> Calcular Índice Personalizado
+                    </button>
+                </form>
+            </div>
+            
+            <div id="resultado-indice" class="card">
+                <!-- Resultados serão exibidos aqui -->
+                <div class="loading">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <p>Calculando índices...</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção de Relatórios -->
+        <section id="relatorio" class="secao">
+            <div class="section-header">
+                <h2><i class="fas fa-file-pdf"></i> Relatórios Médicos</h2>
+                <p>Gere relatórios completos para acompanhamento</p>
+            </div>
+            
+            <div class="card">
+                <div class="relatorio-config">
+                    <h3>Configurar Relatório</h3>
+                    
+                    <div class="periodos-rapidos">
+                        <p>Períodos rápidos:</p>
+                        <div class="periodo-buttons">
+                            <button class="periodo-btn" data-dias="7">7 dias</button>
+                            <button class="periodo-btn" data-dias="14">14 dias</button>
+                            <button class="periodo-btn active" data-dias="30">30 dias</button>
+                            <button class="periodo-btn" data-dias="90">90 dias</button>
+                        </div>
+                    </div>
+                    
+                    <form id="form-relatorio" class="form-simples">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="relatorio-periodo-inicio">Data Inicial:</label>
+                                <input type="date" id="relatorio-periodo-inicio" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="relatorio-periodo-fim">Data Final:</label>
+                                <input type="date" id="relatorio-periodo-fim" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="tipo-relatorio">Tipo de Relatório:</label>
+                            <select id="tipo-relatorio">
+                                <option value="completo">Completo</option>
+                                <option value="glicemia">Apenas Glicemia</option>
+                                <option value="simples">Simples</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-file-pdf"></i> Gerar Relatório
+                            </button>
+                            <button type="button" id="baixar-relatorio-pdf" class="btn btn-success" disabled>
+                                <i class="fas fa-download"></i> Baixar PDF
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                
+                <div id="previa-relatorio" class="previa-relatorio">
+                    <!-- Prévia do relatório aqui -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção Sobre -->
+        <section id="sobre" class="secao">
+            <div class="section-header">
+                <h2><i class="fas fa-info-circle"></i> Sobre o Sistema</h2>
+                <p>Conheça o DiabetesCare</p>
+            </div>
+            
+            <div class="card">
+                <div class="sobre-content">
+                    <h3>DiabetesCare - Sistema de Monitoramento</h3>
+                    <p>Sistema desenvolvido para auxiliar no monitoramento e controle da diabetes, com funcionalidades completas para registro, análise e relatórios.</p>
+                    
+                    <h4>Funcionalidades:</h4>
+                    <ul class="funcionalidades">
+                        <li><i class="fas fa-check"></i> Registro de glicemia com data e hora</li>
+                        <li><i class="fas fa-check"></i> Histórico completo com filtros</li>
+                        <li><i class="fas fa-check"></i> Gráficos interativos</li>
+                        <li><i class="fas fa-check"></i> Sistema de metas</li>
+                        <li><i class="fas fa-check"></i> Relatórios em PDF</li>
+                        <li><i class="fas fa-check"></i> Alertas personalizados</li>
+                    </ul>
+                    
+                    <h4>Desenvolvedor:</h4>
+                    <p><strong>Gledison Arruda Andrade</strong></p>
+                    <p><i class="fas fa-envelope"></i> saudetec@gmail.com</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer-simples">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <p>&copy; 2025 DiabetesCare - Sistema de Monitoramento</p>
+                    <p>Desenvolvido por Gledison Arruda Andrade</p>
+                </div>
+                
+                <div class="footer-links">
+                    <a href="#" data-section="sobre">Sobre</a>
+                    <a href="#" data-section="registro">Registrar</a>
+                    <a href="#" data-section="relatorio">Relatórios</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/temas.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/graficos.js"></script>
+    <script src="js/relatorios.js"></script>
+    <script src="js/indice.js"></script>
+    <script src="js/alimentos.js"></script>
+</body>
+</html>
